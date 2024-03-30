@@ -26,7 +26,10 @@ const DataInference = () => {
   const [uploadFile, { data: processedData }] = useUploadMutation();
 
   const handleUploadFile = async (data: FieldValues) => {
-    const processed = await uploadFile(data.data[0]).unwrap();
+    const formData = new FormData();
+    formData.append('file', data.data[0]);
+    console.log('formData', data.data[0], formData);
+    const processed = await uploadFile(formData).unwrap();
     console.log('processedData', processed);
   };
 
@@ -45,7 +48,6 @@ const DataInference = () => {
                 type="file"
                 onChange={(e) => {
                   dataRegister.onChange(e);
-                  trigger();
                 }}
               />
               <Input type="submit" />
