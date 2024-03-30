@@ -1,6 +1,5 @@
-import FileUpload from '@/components/FileUpload';
 import { useUploadMutation } from '@/features/data/dataApiSlice';
-import { Container, Input, Stack, Typography } from '@mui/material';
+import { Button, Container, Input, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import CustomDataGrid from './components/Table';
@@ -11,9 +10,7 @@ const DataInference = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     watch,
-    trigger,
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -25,7 +22,7 @@ const DataInference = () => {
   }, [watch]);
   const dataRegister = register('data');
 
-  const [uploadFile, { data: processedData }] = useUploadMutation();
+  const [uploadFile, { isLoading, data: processedData }] = useUploadMutation();
 
   const handleUploadFile = async (data: FieldValues) => {
     const formData = new FormData();
@@ -43,7 +40,7 @@ const DataInference = () => {
         </Typography>
         <Stack justifyContent={'center'} height={'100%'}>
           <form onSubmit={handleSubmit(handleUploadFile)}>
-            <Stack justifyContent={'center'}>
+            <Stack justifyContent={'center'} gap={2}>
               <Input
                 {...dataRegister}
                 type="file"
@@ -51,7 +48,9 @@ const DataInference = () => {
                   dataRegister.onChange(e);
                 }}
               />
-              <Input type="submit" />
+              <Button type="submit" variant="contained" disabled={isLoading}>
+                Submit
+              </Button>
             </Stack>
           </form>
         </Stack>

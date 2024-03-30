@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { DataGrid, GridColDef, GridRow, GridRowSelectionModel } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnHeaderParams, GridRow, GridRowSelectionModel } from '@mui/x-data-grid';
 import { Box, Stack } from '@mui/material';
 
 interface CustomDataGridProps {
@@ -23,6 +23,10 @@ const CustomDataGrid: FC<CustomDataGridProps> = ({ columns, rows, dtypes }) => {
         checkboxSelection
         onRowSelectionModelChange={handleSelection}
         rowSelectionModel={selectionModel}
+        onColumnHeaderDoubleClick={(params) => {
+          // TO-DO: change column data type
+          alert(`You've clicked ${params.field}`);
+        }}
       />
     </div>
   );
