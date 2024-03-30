@@ -3,6 +3,8 @@ import { useUploadMutation } from '@/features/data/dataApiSlice';
 import { Container, Input, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import CustomDataGrid from './components/Table';
+import { getColumnsFromResponse, getDTypesFromResponse, getRowsFromResponse } from './utils';
 
 const DataInference = () => {
   const {
@@ -39,7 +41,6 @@ const DataInference = () => {
         <Typography variant="h1" gutterBottom>
           Data Processor
         </Typography>
-
         <Stack justifyContent={'center'} height={'100%'}>
           <form onSubmit={handleSubmit(handleUploadFile)}>
             <Stack justifyContent={'center'}>
@@ -54,6 +55,13 @@ const DataInference = () => {
             </Stack>
           </form>
         </Stack>
+        {!!processedData && (
+          <CustomDataGrid
+            columns={getColumnsFromResponse(processedData)}
+            rows={getRowsFromResponse(processedData)}
+            dtypes={getDTypesFromResponse(processedData)}
+          />
+        )}
       </Stack>
     </Container>
   );

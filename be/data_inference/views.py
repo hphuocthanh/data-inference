@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from .serializers import FileUploadSerializer
 
 import pandas as pd
+from json import loads, dumps
 
 
 class DataInferenceUploadAPIView(APIView):
@@ -19,12 +20,16 @@ class DataInferenceUploadAPIView(APIView):
             uploaded_file = serializer.validated_data["file"]
             df = pd.read_csv(uploaded_file)
             processed = self.infer_and_convert_data_types(df)
+            # Check if an 'id' column exists, and if not, add it
+            if "id" not in processed.columns:
+                # Reset the index and use the new index as the 'id' column
+                processed = processed.reset_index().rename(columns={"index": "id"})
 
             serializer.save()
             return Response(
                 data={
-                    "processed": processed.to_json(),
-                    "types": processed.dtypes.astype(str).to_dict(),
+                    "rows": loads(processed.to_json(orient="records")),
+                    "columns": processed.dtypes.astype(str).to_dict(),
                 },
                 status=status.HTTP_201_CREATED,
             )
