@@ -20,15 +20,12 @@ from rest_framework import routers
 
 from be.quickstart import views
 
-# from snippets import views as snippetsView
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"gro.ups", views.GroupViewSet)
-# router.register(r"snippets", snippetsView.)
 
 urlpatterns = [
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path("", include("snippets.urls")),
     path("", include("data_inference.urls")),
 ]
