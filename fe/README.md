@@ -16,7 +16,7 @@ Before you begin, ensure you have the following installed on your machine:
    First, clone the repository to your local machine using Git:
 
    ```bash
-   git clone https://github.com/hphuocthanh/rhombus
+   git clone https://github.com/hphuocthanh/data-inference
    cd fe
    ```
 

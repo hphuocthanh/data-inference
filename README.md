@@ -16,7 +16,7 @@ To properly set up and run the project, you will need to configure both the fron
   1. Go to frontend folder
 
    ```bash
-   git clone https://github.com/hphuocthanh/rhombus
+   git clone https://github.com/hphuocthanh/data-inference
    ```
 
    ```bash
