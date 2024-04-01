@@ -8,8 +8,8 @@ import DataInference from '@/pages/DataInference';
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      {/* <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} /> */}
       <Route path="/" element={<DataInference />}></Route>
       <Route path="*" element={<Home />} />
     </Routes>

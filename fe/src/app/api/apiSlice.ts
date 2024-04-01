@@ -5,11 +5,11 @@ import { RootState } from '../store';
 const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL,
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).user.token;
+    // const token = (getState() as RootState).user.token;
 
-    if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
+    // if (token) {
+    //   headers.set('Authorization', `Bearer ${token}`);
+    // }
 
     return headers;
   },

@@ -2,6 +2,8 @@
 
 This is a full-stack project aims to help users identify data types of their CSV/XLSX files. This project is structured into two main components: the frontend and the backend. Each part has its own setup instructions and dependencies.
 
+VIDEO DEMO: https://drive.google.com/file/d/1dVHCpN4yEqkMYq041JPKKBvR2JQm8Wwb/view?usp=sharing
+
 ## Project Structure
 
 The project is divided into the following main directories:

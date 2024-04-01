@@ -86,11 +86,15 @@ declare module '@mui/material/Typography' {
   }
 }
 export const AppThemeProvider: React.FC<Props> = ({ children }) => {
-  const mode = useAppSelector((state) => state.user.mode);
+  const mode = localStorage.getItem('mode')
+    ? (localStorage.getItem('mode') as PaletteMode)
+    : window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? ('dark' as PaletteMode)
+      : ('light' as PaletteMode);
   const theme = responsiveFontSizes(
     createTheme({
       palette: {
-        mode: mode as PaletteMode,
+        mode,
         primary: {
           main: '#1c9c7c',
         },

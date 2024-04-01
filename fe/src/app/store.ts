@@ -1,16 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from './api/apiSlice';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import userReducer from '@/features/user/userSlice';
 import dataReducer from '@/features/data/dataSlice';
-import { counterReducer } from '@/features/counterSlice';
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     // Add your reducers here
-    counter: counterReducer,
-    user: userReducer,
     data: dataReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
